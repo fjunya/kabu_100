@@ -91,7 +91,7 @@ YAHOO_PASSWORD = ""
 
 #Yahoo Vip Download CSV
 CSV_RANGE = range(1301, 1333)
-CSV_DIR = "./tmp/YahooCsv/"
+CSV_DIR = "./tmp/yahooCsv/"
 
 #local_settingsを読み込み
 try:

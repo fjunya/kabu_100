@@ -16,3 +16,6 @@ venv/
 
 # IDEA
 .idea/*
+
+# Other
+yahooCsv/
