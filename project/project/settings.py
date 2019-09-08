@@ -91,9 +91,9 @@ YAHOO_PASSWORD = ""
 
 #Yahoo Vip Download CSV
 CSV_RANGE = range(1301, 1333)
+CSV_DIR = "./tmp/YahooCsv/"
 
-
-#ローカル環境設定
+#local_settingsを読み込み
 try:
     from .local_settings import *
 except ImportError:

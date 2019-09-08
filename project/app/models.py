@@ -13,3 +13,8 @@ class RawPrices(models.Model):
     low_price = models.IntegerField("安値")
     volume = models.IntegerField("出来高")
     adjustment_close_price = models.IntegerField("調整後終値")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['code', 'date'], name='unique_code_dete'),
+        ]
