@@ -87,3 +87,10 @@ YAHOO_PASSWORD = ""
 
 #Yahoo Vip Download CSV
 CSV_RANGE = range(1301, 1333)
+
+
+#ローカル環境設定
+try:
+    from .local_settings import *
+except ImportError:
+    pass
