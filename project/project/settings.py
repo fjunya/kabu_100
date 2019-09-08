@@ -81,9 +81,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Yahoo Auth
-LOGIN_URL = "https://login.yahoo.co.jp/config/login?.src=www&.done=https://www.yahoo.co.jp"
-USER_ID = ""
-PASSWORD = ""
+YAHOO_LOGIN_URL = "https://login.yahoo.co.jp/config/login?.src=www&.done=https://www.yahoo.co.jp"
+YAHOO_USER_ID = ""
+YAHOO_PASSWORD = ""
 
 #Yahoo Vip Download CSV
 CSV_RANGE = range(1301, 1333)

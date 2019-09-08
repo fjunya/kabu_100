@@ -15,9 +15,9 @@ class Command(BaseCommand):
 
     def download(self):
         #Yahoo login
-        LOGIN_URL = settings.LOGIN_URL
-        USER_ID = settings.USER_ID
-        PASSWORD = settings.PASSWORD
+        LOGIN_URL = settings.YAHOO_LOGIN_URL
+        USER_ID = settings.YAHOO_USER_ID
+        PASSWORD = settings.YAHOO_PASSWORD
         self.driver.get(LOGIN_URL)
         self.driver.find_element_by_id("username").send_keys(USER_ID)
         self.driver.find_element_by_id("btnNext").click()
