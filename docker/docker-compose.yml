@@ -1,0 +1,16 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    build: ./mysql
+    container_name: kabu_100_db
+    volumes:
+      - data:/var/lib/mysql_kabu_100
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    ports:
+      - 3306:3306
+volumes:
+  data:
+    driver: local
