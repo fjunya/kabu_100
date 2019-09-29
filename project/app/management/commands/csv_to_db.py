@@ -6,6 +6,8 @@ import glob
 import os
 import datetime
 from django.db import IntegrityError
+import logging
+logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = ''
@@ -37,5 +39,9 @@ class Command(BaseCommand):
                 )
                 try:
                     raw_prices.save()
-                except IntegrityError as e:
-                    print(e)
+                except IntegrityError:
+                    logger.info("(code={code})既に登録されております".format(code=code))
+                    # 重複エラーが出た場合はfor文から抜ける
+                    break
+                except Exception as e:
+                    logger.exception(e)
