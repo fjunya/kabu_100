@@ -30,18 +30,19 @@ class Command(BaseCommand):
                 raw_prices = RawPrices(
                     code=code,
                     date=datetime.datetime.strptime(row[0], '%Y/%m/%d').date(),
-                    open_price=float(row[1]),
-                    close_price=float(row[4]),
-                    high_price=float(row[2]),
-                    low_price=float(row[3]),
+                    open_price=int(row[1]),
+                    close_price=int(row[4]),
+                    high_price=int(row[2]),
+                    low_price=int(row[3]),
                     volume=int(row[5]),
-                    adjustment_close_price=int(row[6])
+                    adjustment_close_price=float(row[6])
                 )
                 try:
                     raw_prices.save()
                 except IntegrityError:
-                    logger.info("(code={code})既に登録されております".format(code=code))
+                    logger.info("(code={code}:{date})既に登録されております".format(code=code, date=raw_prices.date))
                     # 重複エラーが出た場合はfor文から抜ける
                     break
                 except Exception as e:
                     logger.exception(e)
+                    logger.error("(code={code}:{date})登録に失敗しました".format(code=code, date=raw_prices.date))
