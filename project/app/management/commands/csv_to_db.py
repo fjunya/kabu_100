@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from app.models import RawPrices
+from app.models import RawPrices, Company
 import csv
 import glob
 import os
@@ -15,6 +15,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.generate_from_csv_dir()
 
+    def add_company(self, code):
+        company = Company.objects.filter(code=code)
+        if not company:
+            save_company = Company(code=code, name="")
+            save_company.save()
+
     def generate_from_csv_dir(self):
         csv_dir = settings.CSV_DIR
         for path in glob.glob(os.path.join(csv_dir, "*.T.csv")):
@@ -23,6 +29,7 @@ class Command(BaseCommand):
             self.generate_price_from_csv_file(code, path)
 
     def generate_price_from_csv_file(self, code: str, csv_file_path):
+        self.add_company(code)
         with open(csv_file_path, encoding="shift_jis") as f:
             reader = csv.reader(f)
             next(reader)  # 先頭行を飛ばす
