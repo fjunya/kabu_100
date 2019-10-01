@@ -21,7 +21,6 @@ class Command(BaseCommand):
     def view_stock_chart(self, code, start_date_str):
         rolling_day = 75
         start_date = datetime.datetime.strptime(start_date_str + "-01", "%Y-%m-%d")
-        print(start_date)
         # 75日移動平均線を求める為に余分にデータを取得。土日を考慮して110日より前から取得
         rawPrices = RawPrices.objects\
             .filter(code=code)\
@@ -40,3 +39,4 @@ class Command(BaseCommand):
         plt.xlabel('Date')
         plt.ylabel('Stock price')
         plt.show()
+
