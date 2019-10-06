@@ -123,6 +123,16 @@ YAHOO_PASSWORD = ""
 #Yahoo Vip Download CSV
 CSV_DIR = "./tmp/yahooCsv/"
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# メールサーバーへの接続設定
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'xxxx@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_USE_TLS = True
+FROM_EMAIL = 'xxxx@gmail.com'
+RECIPIENT_LIST = ['xxxx@gmail.com']
+
 #local_settingsを読み込み
 try:
     from .local_settings import *
