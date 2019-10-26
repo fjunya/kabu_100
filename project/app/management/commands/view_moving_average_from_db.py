@@ -21,8 +21,8 @@ class Command(BaseCommand):
             .filter(code=code)\
             .filter(date__gt=start_date + "-01")\
             .order_by('date')
-        raw_price_list = list(map(lambda x: [x.date, x.adjustment_close_price, x.moving_averages25, x.moving_averages75], raw_prices))
-        columns = ["date", "adjustment_close_price", "moving_averages25", "moving_averages75"]
+        raw_price_list = list(map(lambda x: [x.date, x.adjustment_close_price, x.moving_averages5, x.moving_averages25, x.moving_averages75], raw_prices))
+        columns = ["date", "adjustment_close_price", "moving_averages5", "moving_averages25", "moving_averages75"]
         df = pd.DataFrame(raw_price_list, columns=columns)
         df.date = pd.to_datetime(df.date)
         df.set_index("date", inplace=True)

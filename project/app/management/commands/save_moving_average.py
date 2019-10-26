@@ -24,18 +24,25 @@ class Command(BaseCommand):
         df = pd.DataFrame(raw_price_list, columns=columns)
         df.date = pd.to_datetime(df.date)
         df.set_index("date", inplace=True)
+        moving_averages5 = df.rolling(window=5).mean()
+        moving_averages5.rename(columns={'adjustment_close_price': '5_moving_averages'}, inplace=True)
         moving_averages25 = df.rolling(window=25).mean()
         moving_averages25.rename(columns={'adjustment_close_price': '25_moving_averages'}, inplace=True)
         moving_averages75 = df.rolling(window=75).mean()
         moving_averages75.rename(columns={'adjustment_close_price': '75_moving_averages'}, inplace=True)
-        data = pd.concat([df, moving_averages25, moving_averages75], axis=1)
+        data = pd.concat([df, moving_averages5, moving_averages25, moving_averages75], axis=1)
         for raw_price in raw_prices:
-            if raw_price.moving_averages25 > 0 or raw_price.moving_averages25 == -1:
+            if raw_price.is_moving_average:
                 next()
-            raw_price.moving_averages25 = -1 if np.isnan(data.loc[raw_price.date]['25_moving_averages']) else \
-                data.loc[raw_price.date]['25_moving_averages']
-            raw_price.moving_averages75 = -1 if np.isnan(data.loc[raw_price.date]['75_moving_averages']) else \
-                data.loc[raw_price.date]['75_moving_averages']
+            if not np.isnan(data.loc[raw_price.date]['5_moving_averages']):
+                raw_price.moving_averages5 = data.loc[raw_price.date]['5_moving_averages']
+
+            if not np.isnan(data.loc[raw_price.date]['25_moving_averages']):
+                raw_price.moving_averages25 = data.loc[raw_price.date]['25_moving_averages']
+
+            if not np.isnan(data.loc[raw_price.date]['75_moving_averages']):
+                raw_price.moving_averages75 = data.loc[raw_price.date]['75_moving_averages']
+            raw_price.is_moving_average = True
             raw_price.save()
 
 

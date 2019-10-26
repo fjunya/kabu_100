@@ -16,8 +16,10 @@ class RawPrices(models.Model):
     low_price = models.IntegerField("安値")
     volume = models.IntegerField("出来高")
     adjustment_close_price = models.FloatField("調整後終値")
-    moving_averages25 = models.FloatField("25日移動平均線")
-    moving_averages75 = models.FloatField("75日移動平均線")
+    moving_averages5 = models.FloatField("5日移動平均線", null=True)
+    moving_averages25 = models.FloatField("25日移動平均線", null=True)
+    moving_averages75 = models.FloatField("75日移動平均線", null=True)
+    is_moving_average = models.BooleanField("移動平均線算出済み")
 
     class Meta:
         constraints = [

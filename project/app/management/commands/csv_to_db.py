@@ -42,12 +42,14 @@ class Command(BaseCommand):
                     high_price=int(row[2]),
                     low_price=int(row[3]),
                     volume=int(row[5]),
-                    adjustment_close_price=float(row[6])
+                    adjustment_close_price=float(row[6]),
+                    is_moving_average=False
                 )
                 try:
                     raw_prices.save()
-                except IntegrityError:
+                except IntegrityError as e:
                     logger.info("(code={code}:{date})既に登録されております".format(code=code, date=raw_prices.date))
+                    logger.error(e)
                     # 重複エラーが出た場合はfor文から抜ける
                     break
                 except Exception as e:
