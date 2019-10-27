@@ -33,7 +33,7 @@ class Command(BaseCommand):
         data = pd.concat([df, moving_averages5, moving_averages25, moving_averages75], axis=1)
         for raw_price in raw_prices:
             if raw_price.is_moving_average:
-                next()
+                continue
             if not np.isnan(data.loc[raw_price.date]['5_moving_averages']):
                 raw_price.moving_averages5 = data.loc[raw_price.date]['5_moving_averages']
 
