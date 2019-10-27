@@ -15,6 +15,7 @@ class Command(BaseCommand):
         self.download()
 
     def yahooLogin(self):
+        self.driver.get("https://www.yahoo.co.jp/")
         self.driver.get(settings.YAHOO_LOGIN_URL)
         self.driver.find_element_by_id("username").send_keys(settings.YAHOO_USER_ID)
         self.driver.find_element_by_id("btnNext").click()
