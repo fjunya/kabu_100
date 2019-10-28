@@ -17,11 +17,11 @@ class Command(BaseCommand):
         companies = Company.objects.all()
         notification_list = []
         for company in companies:
-            raw_prices = RawPrices.objects.filter(code=company.code).order_by("date")[:2]
-            series1 = pd.DataFrame(list(map(lambda x: [x.date, x.moving_averages25], raw_prices)),
+            raw_prices = RawPrices.objects.filter(code=company.code).order_by("-date")[:2]
+            series1 = pd.DataFrame(list(map(lambda x: [x.date, x.moving_averages5], raw_prices)),
                                    columns=["date", "sma"])
             series1.set_index("date", inplace=True)
-            series2 = pd.DataFrame(list(map(lambda x: [x.date, x.moving_averages75], raw_prices)),
+            series2 = pd.DataFrame(list(map(lambda x: [x.date, x.moving_averages25], raw_prices)),
                                    columns=["date", "sma"])
             series2.set_index("date", inplace=True)
             if self.crossover(series1, series2):
