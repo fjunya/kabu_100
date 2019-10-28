@@ -39,7 +39,7 @@ class Command(BaseCommand):
         if(series1.size < 2):
             return False
         try:
-            return series1.sma[0] < series2.sma[0] and series1.sma[1] > series2.sma[1]
+            return series1.sma[1] < series2.sma[1] and series1.sma[0] > series2.sma[0]
         except IndexError:
             return False
 
