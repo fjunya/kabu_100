@@ -22,8 +22,7 @@ class Command(BaseCommand):
             save_company.save()
 
     def generate_from_csv_dir(self):
-        csv_dir = settings.CSV_DIR
-        for path in glob.glob(os.path.join(csv_dir, "*.T.csv")):
+        for path in glob.glob(os.path.join(settings.YAHOO_FINANCE_CSV_DIR, "*.T.csv")):
             file_name = os.path.basename(path)
             code = file_name.split('.')[0]
             self.generate_price_from_csv_file(code, path)

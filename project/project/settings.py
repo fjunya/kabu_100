@@ -115,13 +115,13 @@ LOGGING = {
     },
 }
 
-#Yahoo Auth
+#Yahooファイナンスログイン情報
 YAHOO_LOGIN_URL = "https://login.yahoo.co.jp/config/login?.src=www&.done=https://www.yahoo.co.jp"
 YAHOO_USER_ID = ""
 YAHOO_PASSWORD = ""
 
-#Yahoo Vip Download CSV
-CSV_DIR = "./tmp/yahooCsv/"
+#Yahooファイナンス 時系列データcsvの保管場所
+YAHOO_FINANCE_CSV_DIR = "./tmp/yahooCsv/"
 
 #楽天証券 トレード履歴csv保管場所
 RAKUTEN_TRADE_HISTORY_CSV_DIR = "./tmp/rakutenTradeHistoryCsv/"
