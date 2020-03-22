@@ -25,3 +25,14 @@ class RawPrices(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['code', 'date'], name='unique_code_dete'),
         ]
+
+class InvestmentRecord(models.Model):
+    contract_date = models.DateField("約定日")
+    code = models.IntegerField("銘柄コード")
+    amount = models.IntegerField("数量")
+    price = models.FloatField("単価")
+    commission = models.IntegerField("手数料(円)")
+    tax = models.IntegerField("税金等")
+    total_price = models.IntegerField("受渡金額")
+
+

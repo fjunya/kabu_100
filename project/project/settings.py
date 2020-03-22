@@ -123,6 +123,9 @@ YAHOO_PASSWORD = ""
 #Yahoo Vip Download CSV
 CSV_DIR = "./tmp/yahooCsv/"
 
+#楽天証券 トレード履歴csv保管場所
+RAKUTEN_TRADE_HISTORY_CSV_DIR = "./tmp/rakutenTradeHistoryCsv/"
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # メールサーバーへの接続設定
 EMAIL_HOST = 'smtp.gmail.com'
