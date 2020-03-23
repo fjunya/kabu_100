@@ -52,4 +52,5 @@ Calmar Ratio                          1.23873
 _strategy                            SmaCross
 dtype: object
 ```
+<img src="https://github.com/fjunya/README_IMAGE/blob/master/kabu_100/backtesting_library_sample.png?raw=true">
 
